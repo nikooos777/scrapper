@@ -1,0 +1,17 @@
+{
+  "name": "facebook-group-scraper",
+  "version": "1.0.0",
+  "description": "Scraper for Facebook groups with cookie authentication",
+  "type": "module",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js"
+  },
+  "dependencies": {
+    "apify": "^3.1.0",
+    "crawlee": "^3.7.0",
+    "playwright": "^1.40.0"
+  },
+  "author": "Your Name",
+  "license": "ISC"
+}
