@@ -1,0 +1,63 @@
+{
+  "actorSpecification": 1,
+  "name": "facebook-group-scraper",
+  "title": "Facebook Group Scraper",
+  "description": "Scraper do zbierania postów, komentarzy i reakcji z grup na Facebooku. Wymaga cookies do autoryzacji.",
+  "version": "1.0.0",
+  "meta": {
+    "templateId": "javascript-playwright"
+  },
+  "input": "./INPUT_SCHEMA.json",
+  "dockerfile": "./Dockerfile",
+  "readme": "./README.md",
+  "storages": {
+    "dataset": {
+      "actorSpecification": 1,
+      "title": "Posty z Facebooka",
+      "views": {
+        "overview": {
+          "title": "Przegląd postów",
+          "transformation": {
+            "fields": [
+              "author",
+              "date",
+              "content",
+              "commentsCount",
+              "reactions",
+              "postLink"
+            ]
+          },
+          "display": {
+            "component": "table",
+            "properties": {
+              "author": {
+                "label": "Autor",
+                "format": "text"
+              },
+              "date": {
+                "label": "Data",
+                "format": "text"
+              },
+              "content": {
+                "label": "Treść",
+                "format": "text"
+              },
+              "commentsCount": {
+                "label": "Komentarze",
+                "format": "number"
+              },
+              "reactions": {
+                "label": "Reakcje",
+                "format": "object"
+              },
+              "postLink": {
+                "label": "Link",
+                "format": "link"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
