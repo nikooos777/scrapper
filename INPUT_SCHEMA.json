@@ -1,0 +1,86 @@
+{
+  "title": "Facebook Group Scraper - Konfiguracja",
+  "description": "Scraper do zbierania postów z grup na Facebooku",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "groupUrls": {
+      "title": "URLs grup do scrapowania",
+      "type": "array",
+      "description": "Lista URLi grup Facebooka (np. https://www.facebook.com/groups/nazwa-grupy)",
+      "editor": "stringList",
+      "placeholderValue": "https://www.facebook.com/groups/example",
+      "prefill": []
+    },
+    "cookies": {
+      "title": "Cookies z przeglądarki (JSON)",
+      "type": "array",
+      "description": "Wklej tutaj cookies z przeglądarki w formacie JSON. Musisz być zalogowany na Facebooku.",
+      "editor": "json",
+      "prefill": []
+    },
+    "maxPosts": {
+      "title": "Maksymalna liczba postów",
+      "type": "integer",
+      "description": "Ile maksymalnie postów pobrać z każdej grupy",
+      "editor": "number",
+      "default": 50,
+      "minimum": 1,
+      "maximum": 1000
+    },
+    "scrollDelay": {
+      "title": "Opóźnienie scrollowania (ms)",
+      "type": "integer",
+      "description": "Jak długo czekać między scrollowaniami (w milisekundach). Wyższe wartości = bezpieczniejsze.",
+      "editor": "number",
+      "default": 2000,
+      "minimum": 1000,
+      "maximum": 10000
+    },
+    "includeReactions": {
+      "title": "Zbieraj reakcje",
+      "type": "boolean",
+      "description": "Czy zbierać informacje o reakcjach (lajki, serduszka, itp.)",
+      "editor": "checkbox",
+      "default": true
+    },
+    "includeComments": {
+      "title": "Zbieraj komentarze",
+      "type": "boolean",
+      "description": "Czy zbierać komentarze pod postami (może wydłużyć czas scrapowania)",
+      "editor": "checkbox",
+      "default": false
+    },
+    "maxComments": {
+      "title": "Maksymalna liczba komentarzy na post",
+      "type": "integer",
+      "description": "Ile komentarzy zbierać pod każdym postem (jeśli włączone)",
+      "editor": "number",
+      "default": 10,
+      "minimum": 1,
+      "maximum": 100
+    },
+    "contentFilter": {
+      "title": "Filtr treści (opcjonalny)",
+      "type": "string",
+      "description": "Zbieraj tylko posty zawierające określone słowo/frazę (pozostaw puste dla wszystkich postów)",
+      "editor": "textfield",
+      "default": ""
+    },
+    "dateFrom": {
+      "title": "Data od (opcjonalna)",
+      "type": "string",
+      "description": "Format: YYYY-MM-DD (np. 2024-01-01). Pozostaw puste dla wszystkich dat.",
+      "editor": "textfield",
+      "default": null
+    },
+    "dateTo": {
+      "title": "Data do (opcjonalna)",
+      "type": "string",
+      "description": "Format: YYYY-MM-DD (np. 2024-12-31). Pozostaw puste dla wszystkich dat.",
+      "editor": "textfield",
+      "default": null
+    }
+  },
+  "required": ["groupUrls", "cookies"]
+}
