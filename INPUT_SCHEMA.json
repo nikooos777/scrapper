@@ -72,14 +72,14 @@
       "type": "string",
       "description": "Format: YYYY-MM-DD (np. 2024-01-01). Pozostaw puste dla wszystkich dat.",
       "editor": "textfield",
-      "default": null
+      "default": ""
     },
     "dateTo": {
       "title": "Data do (opcjonalna)",
       "type": "string",
       "description": "Format: YYYY-MM-DD (np. 2024-12-31). Pozostaw puste dla wszystkich dat.",
       "editor": "textfield",
-      "default": null
+      "default": ""
     }
   },
   "required": ["groupUrls", "cookies"]
