@@ -26,6 +26,32 @@ if (!groupUrls || groupUrls.length === 0) {
     throw new Error('Musisz podać przynajmniej jeden URL grupy!');
 }
 
+// Normalizacja cookies - naprawienie formatu dla Playwright
+const normalizedCookies = cookies.map(cookie => {
+    // Mapowanie sameSite na poprawne wartości
+    let sameSite = 'Lax'; // domyślna wartość
+    if (cookie.sameSite === 'no_restriction' || cookie.sameSite === 'none') {
+        sameSite = 'None';
+    } else if (cookie.sameSite === 'lax') {
+        sameSite = 'Lax';
+    } else if (cookie.sameSite === 'strict') {
+        sameSite = 'Strict';
+    } else if (!cookie.sameSite) {
+        sameSite = 'Lax';
+    }
+
+    return {
+        name: cookie.name,
+        value: cookie.value,
+        domain: cookie.domain,
+        path: cookie.path || '/',
+        expires: cookie.expirationDate || -1,
+        httpOnly: cookie.httpOnly || false,
+        secure: cookie.secure || false,
+        sameSite: sameSite
+    };
+});
+
 const crawler = new PlaywrightCrawler({
     launchContext: {
         launchOptions: {
@@ -36,7 +62,7 @@ const crawler = new PlaywrightCrawler({
         log.info(`Scrapowanie: ${request.url}`);
 
         // Wstrzykiwanie cookies
-        await page.context().addCookies(cookies);
+        await page.context().addCookies(normalizedCookies);
         
         await page.goto(request.url, { waitUntil: 'networkidle' });
         await page.waitForTimeout(3000);
